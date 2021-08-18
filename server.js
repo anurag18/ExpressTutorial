@@ -18,5 +18,9 @@ app.get('/',(req,res)=>{
 app.get('/about',(req,res)=>{
     res.sendFile(path.resolve(__dirname)+`/about.html`)
 })
+
+app.get('/download',(req,res)=>{
+    res.download(path.resolve(__dirname)+'/about.html')
+})
 const PORT = process.env.PORT || 3000
 app.listen(PORT,()=> console.log(`Server Started at ${PORT}`))
