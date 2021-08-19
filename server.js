@@ -23,6 +23,6 @@ console.log(app.get('views'))
 
 app.use(mainRouter)
 //you can prefix as well in route
-app.use('/api',mainRouter)
+//app.use('/api',mainRouter)
 const PORT = process.env.PORT || 3000
 app.listen(PORT,()=> console.log(`Server Started at ${PORT}`))
