@@ -1,6 +1,8 @@
 const express = require('express')
 const path = require('path')
 const mainRouter = require('./routes/index')
+const pruductRouter = require('./routes/products')
+
 const app = express()
 //telling express we are using ejs using set method which set the value of view engine to ejs
 app.set("view engine", 'ejs')
@@ -22,6 +24,7 @@ console.log(app.get('views'))
 // })
 
 app.use(mainRouter)
+app.use(pruductRouter)
 //you can prefix as well in route
 //app.use('/api',mainRouter)
 const PORT = process.env.PORT || 3000
