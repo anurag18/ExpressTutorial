@@ -1,6 +1,6 @@
 const express = require('express')
 const path = require('path')
-
+const mainRouter = require('./routes/index')
 const app = express()
 //telling express we are using ejs using set method which set the value of view engine to ejs
 app.set("view engine", 'ejs')
@@ -20,21 +20,9 @@ console.log(app.get('views'))
 // app.get('/sendFileMethod',(req,res)=>{
 // res.sendFile(path.resolve(__dirname)+`/index.html`)
 // })
-app.get('/',(req,res)=>{
-    //res.sendFile(path.resolve(__dirname)+`/index.html`)
-    res.render('index',{
-        title:'My Home Page'
-    })
-    })
-app.get('/about',(req,res)=>{
-    //res.sendFile(path.resolve(__dirname)+`/about.html`)
-    res.render('about', {
-        title: 'About Page'
-    })
-})
 
-app.get('/download',(req,res)=>{
-    res.download(path.resolve(__dirname)+'/about.html')
-})
+app.use(mainRouter)
+//you can prefix as well in route
+app.use('/api',mainRouter)
 const PORT = process.env.PORT || 3000
 app.listen(PORT,()=> console.log(`Server Started at ${PORT}`))
