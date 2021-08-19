@@ -2,6 +2,8 @@ const express = require('express')
 const path = require('path')
 const mainRouter = require('./routes/index')
 const pruductRouter = require('./routes/products')
+const dealerRouter = require('./routes/users')
+const globalMiddleWare = require('./middlewares/global')
 
 const app = express()
 //telling express we are using ejs using set method which set the value of view engine to ejs
@@ -23,8 +25,18 @@ console.log(app.get('views'))
 // res.sendFile(path.resolve(__dirname)+`/index.html`)
 // })
 
+//Middleware configuration
+// Keep in mind sequence play key role
+app.use(globalMiddleWare)
+// Router configuration
+app.use(dealerRouter)
 app.use(mainRouter)
 app.use(pruductRouter)
+
+//to activate globalmiddleware
+//now it will applicable for all the requests 
+
+
 //you can prefix as well in route
 //app.use('/api',mainRouter)
 const PORT = process.env.PORT || 3000
